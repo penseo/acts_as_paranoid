@@ -169,7 +169,7 @@ module ActsAsParanoid
         scope = klass.only_deleted
 
         # Merge in the association's scope
-        scope = scope.merge(association(reflection.name).association_scope)
+        scope = scope.merge(association(reflection.name).send(:association_scope))
 
         # We can only recover by window if both parent and dependant have a
         # paranoid column type of :time.
@@ -190,7 +190,7 @@ module ActsAsParanoid
         scope = klass.only_deleted
 
         # Merge in the association's scope
-        scope = scope.merge(association(reflection.name).association_scope)
+        scope = scope.merge(association(reflection.name).send(:association_scope))
 
         scope.each do |object|
           object.destroy!
